@@ -1,5 +1,4 @@
 set virtualedit=block
-set smartcase
 set clipboard=unnamed
 set foldmethod=syntax
 set nocompatible              " be iMproved, required
@@ -31,13 +30,15 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'ciaranm/detectindent'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'rking/ag.vim'
 Plugin 'AndrewRadev/linediff.vim'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'othree/yajs.vim'
+Plugin 'vim-scripts/SyntaxComplete'
+Plugin 'sgur/vim-editorconfig'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,7 +58,6 @@ set cursorline
 hi cursorline cterm=none
 hi cursorlinenr ctermfg=red
 
-execute pathogen#infect()
 autocmd FileType typescript :set makeprg=tsx
 autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
 autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
@@ -75,6 +75,9 @@ set modeline
 set autoindent
 set expandtab
 set wildmode=longest,list
+"set wildignore+=*/build/*,*.so,*.swp,*.zip     " Linux/MacOSX
+
+"set wildignore+=build/*
 
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -94,6 +97,30 @@ autocmd BufReadPost * :DetectIndent
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 let g:ctrlp_max_files=0
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'coverage\|build-client\|build\|node_modules\|DS_Store\|git'
 cabbr <expr> %% expand('%:p:h')
 autocmd VimEnter * DetectIndent
+set ignorecase
+set smartcase
+
+
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+    	    \	if &omnifunc == "" |
+    	    \		setlocal omnifunc=syntaxcomplete#Complete |
+    	    \	endif
+endif
+
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint']
+\}
+
+let g:ale_fixers = {
+\    'javascript': ['eslint'],
+\    'vue': ['eslint'],
+\    'scss': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+
