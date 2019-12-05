@@ -140,3 +140,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 highlight ALEError ctermbg=none cterm=underline
+
+set ttimeoutlen=100
+
