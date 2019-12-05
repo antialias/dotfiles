@@ -35,6 +35,7 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'othree/yajs.vim'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'hotoo/jsgf.vim'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -102,3 +103,21 @@ let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 cabbr <expr> %% expand('%:p:h')
 autocmd VimEnter * DetectIndent
+let g:ale_linter_aliases = {'javascriptreact': ['javascript']}
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'jsx': ['eslint'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint']
+\}
+
+let g:ale_fixers = {
+\    'jsx': ['eslint'],
+\    'javascriptreact': ['eslint'],
+\    'javascript': ['eslint'],
+\    'vue': ['eslint'],
+\    'scss': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+
+highlight ALEError ctermbg=none cterm=underline
