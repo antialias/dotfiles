@@ -1,5 +1,4 @@
 set virtualedit=block
-set smartcase
 set clipboard=unnamed
 set foldmethod=syntax
 set nocompatible              " be iMproved, required
