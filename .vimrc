@@ -41,11 +41,14 @@ Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end() " required
+let g:rg_command = 'rg --vimgrep -S'
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
