@@ -42,6 +42,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'sgur/vim-editorconfig'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
