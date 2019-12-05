@@ -89,6 +89,9 @@ set autoindent
 set expandtab
 set wildmode=longest,list
 
+"set wildignore+=*/build/*,*.so,*.swp,*.zip     " Linux/MacOSX
+"set wildignore+=build/*
+
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 
