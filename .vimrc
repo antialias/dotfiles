@@ -32,8 +32,9 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
+Plug 'othree/yajs.vim'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'hotoo/jsgf.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
