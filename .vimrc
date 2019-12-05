@@ -41,6 +41,7 @@ Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'vim-scripts/SyntaxComplete'
 Plug 'sgur/vim-editorconfig'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jremmen/vim-ripgrep'
@@ -109,6 +110,17 @@ let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore = 'coverage\|build-client\|build\|node_modules\|DS_Store\|git'
 cabbr <expr> %% expand('%:p:h')
 autocmd VimEnter * DetectIndent
+set ignorecase
+set smartcase
+
+
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+    	    \	if &omnifunc == "" |
+    	    \		setlocal omnifunc=syntaxcomplete#Complete |
+    	    \	endif
+endif
+
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ale_linter_aliases = {'javascriptreact': ['javascript']}
 let g:ale_linters = {
