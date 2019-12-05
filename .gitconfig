@@ -1,5 +1,6 @@
 [user]
 	name = antialias
+	email = thomas.hallock@compass.com
 [rebase]
 	autosquash = true
 [rerere]
