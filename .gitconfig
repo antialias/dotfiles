@@ -9,6 +9,7 @@
 [alias]
 	msg = show-branch --no-name @
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	pushf = push --force-with-lease
 [merge]
 	conflictstyle = diff3
 	tool = vim
