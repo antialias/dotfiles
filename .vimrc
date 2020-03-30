@@ -31,6 +31,8 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plug 'ryvnf/readline.vim'
+Plug 'vim/killersheep'
 Plug 'othree/yajs.vim'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'hotoo/jsgf.vim'
@@ -145,4 +147,10 @@ highlight ALEError ctermbg=none cterm=underline
 
 set ttimeoutlen=100
 set autochdir
-
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
