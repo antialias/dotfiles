@@ -5,51 +5,60 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set autoread
+au CursorHold,CursorHoldI * checktime
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+" set rtp+=~/.vim/bundle/Vundle.vim
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plug 'VundleVim/Vundle.vim'
+" Plug 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plug 'git://git.wincent.com/command-t.git'
+" Plug 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plug 'ryvnf/readline.vim'
-Plug 'vim/killersheep'
-Plug 'othree/yajs.vim'
-Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
-Plug 'hotoo/jsgf.vim'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-unimpaired'
+Plug 'leafgarland/typescript-vim'
+" Plug 'vim/killersheep'
+" Plug 'othree/yajs.vim'
+" Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+" Plug 'hotoo/jsgf.vim'
+Plug 'dense-analysis/ale'
+" Plug 'tpope/vim-unimpaired'
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
-Plug 'AndrewRadev/linediff.vim'
-Plug 'vim-scripts/SyntaxComplete'
+" Plug 'rking/ag.vim'
+" Plug 'AndrewRadev/linediff.vim'
+" Plug 'vim-scripts/SyntaxComplete'
 Plug 'sgur/vim-editorconfig'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'jremmen/vim-ripgrep'
-Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'jremmen/vim-ripgrep'
+" Plug 'stefandtw/quickfix-reflector.vim'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end() " required
@@ -72,7 +81,7 @@ set cursorline
 hi cursorline cterm=none
 hi cursorlinenr ctermfg=red
 
-autocmd FileType typescript :set makeprg=tsx
+autocmd FileType typescript :set makeprg=tsc
 autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
 autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
 autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
@@ -126,8 +135,13 @@ if has("autocmd") && exists("+omnifunc")
 endif
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ale_linter_aliases = {'javascriptreact': ['javascript']}
+let g:ale_linter_aliases = {
+\    'javascriptreact': ['javascript']
+\}
 let g:ale_linters = {
+\    'typescript': ['eslint'], 
+\    'typescriptreact': ['eslint'], 
+\    'tsx': ['eslint'], 
 \   'python': ['flake8', 'pylint'],
 \   'jsx': ['eslint'],
 \   'javascript': ['eslint'],
@@ -135,6 +149,9 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
+\    'typescript': ['eslint'], 
+\    'typescriptreact': ['eslint'], 
+\    'tsx': ['eslint'], 
 \    'jsx': ['eslint'],
 \    'javascriptreact': ['eslint'],
 \    'javascript': ['eslint'],
@@ -154,3 +171,6 @@ set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = '--jsx --react-jsxdev'
+set re=0
