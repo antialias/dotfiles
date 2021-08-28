@@ -1,6 +1,6 @@
 [user]
-	name = antialias
-	email = thomas.hallock@compass.com
+	name = Thomas Hallock
+	email = thomas@evolutioniq.com
 [rebase]
 	autosquash = true
 [rerere]
@@ -21,3 +21,8 @@
 [mergetool "vim"]
 	cmd = vim -O $MERGED
 	trustExitCode = false
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
