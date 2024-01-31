@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+Plug 'github/copilot.vim'
 " let Vundle manage Vundle, required
 " Plug 'VundleVim/Vundle.vim'
 
@@ -54,11 +55,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/SyntaxComplete'
 Plug 'sgur/vim-editorconfig'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'jremmen/vim-ripgrep'
+" Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim'
+Plug 'jellydn/CopilotChat.nvim'
 
 " All of your Plugins must be added before the following line
 call plug#end() " required
